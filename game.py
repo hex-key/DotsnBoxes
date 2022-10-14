@@ -25,7 +25,7 @@ class Game:
     def iterate(self):
         move = self.prompt()
 
-        self.board = self.board.makeMove(move[0], move[1])
+        self.board.makeMove(move[0], move[1])
         #print(self.board.verticalEdgesArray[0])
         print()
         print()

@@ -1,7 +1,28 @@
+html * {
+    color: rgb(31, 38, 67);
+    font-family: 'Verdana', sans-serif !important;
+}
+
 body {
     background-color: #6fdc92;
 }
 
 .content {
     text-align: center;
+}
+
+.title {
+    display: block;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(24, 34, 78)
+}
+
+.subtitle {
+    display: block;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: semi-bold;
+    color: rgb(47, 63, 126)
 }

@@ -82,7 +82,7 @@ class Board:
 
             # Find the square above
             try: 
-                topEdge = self.horizontalEdgesArray[edgeRow//2 - 1][edgeCol]
+                topEdge = self.horizontalEdgesArray[edgeRow//2-1][edgeCol]
                 rightEdge = self.verticalEdgesArray[edgeRow//2-1][edgeCol+1]
                 leftEdge = self.verticalEdgesArray[edgeRow//2-1][edgeCol]
 
@@ -97,12 +97,12 @@ class Board:
 
             # Find the square below
             try: 
-                bottomEdge = self.horizontalEdgesArray[edgeRow//2 +1][edgeCol]
-                rightEdge = self.verticalEdgesArray[edgeRow//2+1][edgeCol+1]
-                leftEdge = self.verticalEdgesArray[edgeRow//2+1][edgeCol]
+                bottomEdge = self.horizontalEdgesArray[edgeRow//2+1][edgeCol]
+                rightEdge = self.verticalEdgesArray[edgeRow//2][edgeCol+1]
+                leftEdge = self.verticalEdgesArray[edgeRow//2][edgeCol]
 
                 if bottomEdge != " " and rightEdge != " " and leftEdge != " ":
-                    self.squares[edgeRow//2+1][edgeCol] = self.turn
+                    self.squares[edgeRow//2][edgeCol] = self.turn
                     nextTurn = self.turn
             except:
                 pass
@@ -111,27 +111,27 @@ class Board:
         else:
             self.verticalEdgesArray[(edgeRow-1)//2][edgeCol] = "|"
 
-            # Find the square to the right
+            # Find the square to the left
             try: 
-                topEdge = self.horizontalEdgesArray[(edgeRow+1)//2][edgeCol]
-                rightEdge = self.verticalEdgesArray[(edgeRow+1)//2][edgeCol+1]
-                leftEdge = self.verticalEdgesArray[(edgeRow+1)//2][edgeCol]
+                topEdge = self.horizontalEdgesArray[(edgeRow-1)//2][edgeCol-1]
+                bottomEdge = self.horizontalEdgesArray[(edgeRow-1)//2+1][edgeCol-1]
+                leftEdge = self.verticalEdgesArray[(edgeRow-1)//2][edgeCol-1]
 
-                if topEdge != " " and rightEdge != " " and leftEdge != " ":
-                    self.squares[(edgeRow+1)//2-1][edgeCol] = self.turn
+                if topEdge != " " and bottomEdge != " " and leftEdge != " ":
+                    self.squares[(edgeRow-1)//2][edgeCol-1] = self.turn
                     nextTurn = self.turn
 
             except:
                 pass
 
-            # Find the square to the left
+            # Find the square to the right
             try: 
-                bottomEdge = self.horizontalEdgesArray[edgeRow//2 +1][edgeCol]
-                rightEdge = self.verticalEdgesArray[edgeRow//2+1][edgeCol+1]
-                leftEdge = self.verticalEdgesArray[edgeRow//2+1][edgeCol]
+                topEdge = self.horizontalEdgesArray[(edgeRow-1)//2][edgeCol]
+                bottomEdge = self.horizontalEdgesArray[(edgeRow-1)//2+1][edgeCol]
+                rightEdge = self.verticalEdgesArray[(edgeRow-1)//2][edgeCol+1]
 
-                if bottomEdge != " " and rightEdge != " " and leftEdge != " ":
-                    self.squares[edgeRow//2+1][edgeCol] = self.turn
+                if bottomEdge != " " and bottomEdge != " " and rightEdge != " ":
+                    self.squares[(edgeRow-1)//2][edgeCol] = self.turn
                     nextTurn = self.turn
             except:
                 pass

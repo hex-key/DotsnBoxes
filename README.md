@@ -1,2 +1,2 @@
 # DotsnBoxes
-one idiot and a genius doing nerd crap
+two idiots doing nerd crap

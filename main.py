@@ -1,4 +1,9 @@
-print("hello world")
+from game import Game
+from board import Board
 
-board = Board()
-board.printBoard()
+testGame = Game()
+testGame.start()
+
+while not testGame.gameOver():
+    testGame.iterate()
+

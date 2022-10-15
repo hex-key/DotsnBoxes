@@ -3,7 +3,7 @@
     <head>
         <title>Dots and Boxes</title>
         <link rel="stylesheet" type="text/css" href="./style.css" />
-        link rel="script" type="text/javascript" href="./script.js" />
+        <link rel="script" type="text/javascript" href="./script.js" />
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
         <script>
@@ -11,12 +11,15 @@
                 var anchors = document.getElementsByTagName('div');
                 for(var i = 0; i < anchors.length; i++) {
                     var anchor = anchors[i];
-                    if(anchor.className == "line-h" || anchor.className == "line-v") {
+                    if(anchor.className === "line-h") {
                         anchor.onclick = function() {
-                            anchor.class =  
-                            //fix to actual click function
+                            this.className = "line-h-red";
                         }
-                    }
+                    } else if (anchor.className === "line-v") {
+                        anchor.onclick = function() {
+                            this.className = "line-v-red";
+                        }
+                    } // add actual click inform shit to both of tehese
                 }
             }
         </script>

@@ -2,7 +2,8 @@
 
 :root {
     --long: 60px;
-    --short: 10px;
+    --short: 15px;
+    --border-width: 3px;
 }
 html * {
     color: rgb(31, 38, 67);
@@ -10,7 +11,7 @@ html * {
 }
 
 body {
-    background-color: #C8C8C8;
+    background-color: rgb(200, 200, 200);
 }
 
 .title {
@@ -35,8 +36,8 @@ body {
 
 .dot {
     display: inline-block;
-    border-radius: 50%;
-    background-color: rgb(24, 34, 78);
+    border-radius: 15%;
+    background-color: rgb(0, 0, 0);
     width: var(--short);
     height: var(--short);
 }
@@ -45,19 +46,31 @@ body {
     display: inline-block;
     width: var(--long);
     height: var(--short);
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(69, 69, 69);
+}
+
+.line-h:hover {
+    width: 50px;
+    height: 5px;
+    border: 5px solid rgb(0, 0, 0);
 }
 
 .line-v {
     height: var(--long);
     width: var(--short);
     display: inline-block;
-    background-color: rgb(0, 0, 20);
+    background-color: rgb(69, 69, 69);
+}
+
+.line-v:hover {
+    height: var(--long) - calc(2 * var(--border-width));
+    width: var(--short) - calc(2 * var(--border-width));
+    border: var(--border-width)
 }
 
 .square {
     display: inline-block;
-    background-color: rgb(0, 200, 0);
+    background-color: rgb(128, 128, 128);
     height: 60px;
     width: 60px;
 }

@@ -1,3 +1,6 @@
+from this import d
+
+
 class Board:
 
     def __init__(self, board=None, turn="R"):
@@ -63,13 +66,15 @@ class Board:
 
             for r in range(6):
                 for c in range(6):
-                    if board[r][c] == "R":
+                    if self.squares[r][c] == "R":
                         redCount += 1
                     else:
                         blueCount += 1
 
             if redCount > blueCount:
                 return "R"
+            elif redCount == blueCount:
+                return "T"
             else:
                 return "B"
         else:
@@ -143,6 +148,33 @@ class Board:
             return "B"
         else:
             return "R"
+
+    
+    def getNextMoves(self):
+
+        possibleMoves = []
+
+        for hRow in range(7):
+            for hCol in range(6):
+                if self.horizontalEdgesArray[hRow][hCol] == " ":
+                    possibleMoves.append([hRow*2, hCol])
+        
+        for vRow in range(6):
+            for vCol in range(7):
+                if self.verticalEdgesArray[vRow][vCol] == " ":
+                    possibleMoves.append([vRow*2+1, vCol])
+
+        possibleNextBoards = []
+
+        for move in possibleMoves:
+            newBoard = Board(self, self.turn)
+
+            newBoard = newBoard.makeMove(move[0], move[1])
+
+            possibleNextBoards.append(newBoard)
+
+
+        return possibleNextBoards
 
     def printBoard(self):
 

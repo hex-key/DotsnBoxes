@@ -71,7 +71,7 @@ class GameState:
         if self.leaf:
             self.visits = -1
             return self.total
-        return simulate(self.board, getNextPlayer(self.player))
+        return simulate(self.board)
 
     def addToTotal(self, newValue):
         self.total += newValue

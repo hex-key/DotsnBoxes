@@ -26,12 +26,12 @@ def simulate(board):
 
         for hRow in range(7):
             for hCol in range(6):
-                if self.horizontalEdgesArray[hRow][hCol] == " ":
+                if simBoard.horizontalEdgesArray[hRow][hCol] == " ":
                     possibleMoves.append([hRow*2, hCol])
         
         for vRow in range(6):
             for vCol in range(7):
-                if self.verticalEdgesArray[vRow][vCol] == " ":
+                if simBoard.verticalEdgesArray[vRow][vCol] == " ":
                     possibleMoves.append([vRow*2+1, vCol])
         
         chosenMove = random.randint(0, len(possibleMoves)-1)

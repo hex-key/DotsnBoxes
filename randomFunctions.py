@@ -1,4 +1,6 @@
 from board import Board
+from game import Game
+import random
 
 def hasWon(board, player):
 
@@ -14,3 +16,38 @@ def getNextPlayer(player):
         return "B"
     else:
         return "R"
+
+def simulate(board):
+    simBoard = Board(board, board.turn)
+
+    while not simBoard.gameOver():
+
+        possibleMoves = []
+
+        for hRow in range(7):
+            for hCol in range(6):
+                if self.horizontalEdgesArray[hRow][hCol] == " ":
+                    possibleMoves.append([hRow*2, hCol])
+        
+        for vRow in range(6):
+            for vCol in range(7):
+                if self.verticalEdgesArray[vRow][vCol] == " ":
+                    possibleMoves.append([vRow*2+1, vCol])
+        
+        chosenMove = random.randint(0, len(possibleMoves)-1)
+
+        simBoard.makeMove(possibleMoves[chosenMove][0], possibleMoves[chosenMove][1])
+
+    winner = simBoard.getWinner()
+    if winner == "R":
+        return 50
+    elif winner == "B":
+        return -50
+    else:
+        return 0
+
+def getPlayerMove():
+    row = int(input("Which row? "))
+    col = int(input("Which col? "))
+
+    return [row, col]

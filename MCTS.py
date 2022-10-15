@@ -1,8 +1,8 @@
-import random
 import numpy as np
-import randomFunctions
+from randomFunctions import hasWon, getNextPlayer, simulate
+from board import Board
 
-
+userPlayer = "R"
 # Things a game state needs:
 # - the literal game state (board)
 # - whose turn it is
@@ -20,38 +20,49 @@ import randomFunctions
 # UCBI is sum of Exploitation value + Exploration value
 class GameState:
 
-    def __init__(self, board, player = None):
+    def __init__(self, board):
         self.board = board
         self.total = 0
         self.visits = 0
-        self.player = player
+        self.player = self.board.turn
 
         self.parent = None
         self.children = []
         self.leaf = False
 
-        if hasWon(self.board, userPlayer):
-            self.total = -50
-            self.visits = 0
-            self.leaf = True
-        elif hasWon(self.board, getNextPlayer(userPlayer)):
-            self.total = 50
-            self.visits = 0
+        if self.board.gameOver():
+            winner = self.board.getWinner()
             self.leaf = True
 
+            if winner == userPlayer:
+                self.total = -50
+                self.visits = 0
+            elif winner == "B":
+                self.total = 50
+                self.vivists = 0
 
+            else:
+                self.total = 0
+                self.visits = 0
+                
     def setParent(self, parentState):
         self.parent = parentState
         self.player = getNextPlayer(parentState.player)
         parentState.addChild(self)
-        if hasWon(self.board, userPlayer):
-            self.total = -50
-            self.visits = 0
+        if self.board.gameOver():
+            winner = self.board.getWinner()
             self.leaf = True
-        elif hasWon(self.board, getNextPlayer(userPlayer)):
-            self.total = 50
-            self.visits = 0
-            self.leaf = True
+
+            if winner == userPlayer:
+                self.total = -50
+                self.visits = 0
+            elif winner == "B":
+                self.total = 50
+                self.vivists = 0
+
+            else:
+                self.total = 0
+                self.visits = 0
 
     def addChild(self, childState):
         self.children.append(childState)
@@ -168,10 +179,10 @@ class GameState:
 
 
     def expand(self):
-        nextMoves = getNextMoves(self.board, self.player)
+        nextMoves = self.board.getNextMoves()
 
         for nextState in nextMoves:
-            newState = GameState(getBoardCopy(nextState))
+            newState = GameState(Board(nextState, nextState.turn))
             newState.setParent(self)
 
 # Things a MCTree needs:

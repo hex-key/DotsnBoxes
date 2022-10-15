@@ -1,6 +1,9 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
         <title>Dots and Boxes</title>
         <link rel="stylesheet" type="text/css" href="./style.css" />
         <script src="./script.js"></script>
@@ -14,18 +17,21 @@
                     if(anchor.className === "line-h") {
                         anchor.onclick = function() {
                             this.className = "line-h line-h-red";
+                            console.log("heehoo");
+                            this.onclick="";
                         }
                     } else if (anchor.className === "line-v") {
                         anchor.onclick = function() {
                             this.className = "line-v line-v-red";
+                            this.onclick="";
                         }
                     } // add actual click inform shit to both of tehese
                 }
             }
         </script>
 
-        <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     </head>
     <body>
         <div class="logo"> 💯✅🔁 x 🤓🤠 </div>

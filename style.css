@@ -120,10 +120,16 @@ body {
 
 .square-red {
     background-color: var(--medium-red);
+    height: 54px;
+    width: 54px;
+    border: var(--border-width) solid var(--dark-red);
 }
 
 .square-blue {
     background-color: var(--medium-blue);
+    height: 54px;
+    width: 54px;
+    border: var(--border-width) solid var(--dark-blue);
 }
 
 .row-spacer {

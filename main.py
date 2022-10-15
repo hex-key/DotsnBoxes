@@ -13,20 +13,23 @@ squares = [['R', 'R', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ',
 
 turn = "R"
 
-setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
+#setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
 
 testGame.start()
 
 userPlayer = "R"
 
+moveNum = 0
+
 while not testGame.board.gameOver():
+    moveNum += 1
     if testGame.board.turn == userPlayer:
         print(testGame.board.turn + " your go!")
         move = getPlayerMove()
         testGame.board = testGame.board.makeMove(move[0], move[1])
     else:
         tree = MCTree(GameState(testGame.board))
-        move = tree.makeChoice(3000)
+        move = tree.makeChoice(1000, moveNum)
         testGame.board = move[0]
         if abs(move[1]) < 50:
             print("evaluation:", move[1])

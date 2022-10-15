@@ -56,6 +56,18 @@ class Board:
                     return False
         return True
 
+    def score(self):
+        rScore = 0
+        bScore = 0
+        for r in range(len(self.squares)):
+            for c in range(len(self.squares[0])):
+                if self.squares[r][c] == "R":
+                    rScore += 1
+                elif self.squares[r][c] == "B":
+                    bScore += 1
+
+        return [rScore, bScore]
+
     def getWinner(self):
         if self.gameOver():
             redCount = 0

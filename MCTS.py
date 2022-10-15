@@ -211,24 +211,52 @@ class MCTree:
         leafToUpdate.addToTotal(score)
         leafToUpdate.addVisit()
 
-    def makeChoice(self, iterations):
+    def makeChoice(self, iterations, moveNum):
         for iteration in range(iterations):
             self.iterate()
 
         childScores = []
+        rawScores = []
 
         for child in self.root.children:
             try:
+
+                twoDeep = child.board.getNextMoves()
+                minScore = [0, 25]
+                for state in twoDeep:
+                    score = state.score()
+                    if score[1] - score[0] < minScore[1] - minScore[0]:
+                        minScore = score
+
+                score = minScore
+                rawScores.append(score[1]-score[0])
                 childScores.append(child.total / child.visits)
             except:
                 childScores.append(child.total)
 
         approved = 0
         try:
+
+            legalMoves = []
+            for i in range(len(childScores)):
+                legalMoves.append(i)
+
+            if moveNum < 300:
+                max = rawScores[0]
+                legalMoves = []
+
+                for i in range(len(rawScores)):
+                    if rawScores[i] == max:
+                        legalMoves.append(i)
+                    elif rawScores[i] > max:
+                        legalMoves = [i]
+                        max = rawScores[i] 
+            
+
             max = childScores[0]
 
             for item in range(len(childScores)):
-                if childScores[item] > max:
+                if childScores[item] > max and item in legalMoves:
                     approved = item
                     max = childScores[item]
             #print(approved)

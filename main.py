@@ -9,7 +9,7 @@ testGame.start()
 userPlayer = "R"
 
 while not testGame.board.gameOver():
-    if True: #testGame.board.turn == userPlayer:
+    if testGame.board.turn == userPlayer:
         print(testGame.board.turn + " your go!")
         move = getPlayerMove()
         testGame.board = testGame.board.makeMove(move[0], move[1])

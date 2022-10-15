@@ -175,6 +175,10 @@ class Board:
 
     def printBoard(self):
 
+        print(self.horizontalEdgesArray)
+        print(self.verticalEdgesArray)
+        print(self.squares)
+
         """
         .  .__.__.
            |  | B|
@@ -204,4 +208,5 @@ class Board:
                     else:
                         print(self.squares[(row-1)//2][(col-1)//2], end = " ")
             print()
+        
 

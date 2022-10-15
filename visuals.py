@@ -81,18 +81,22 @@ while keepGoing:
             position = pygame.mouse.get_pos()
 
             if testGame.board.turn == userPlayer and more:
-
-                row = (position[1] - 20) // 45
-                col = (position[0] - 20) // 90
-                move = [row, col]
-                testGame.board = testGame.board.makeMove(move[0], move[1])
-                moveNum += 1
-                justMoved = True
-
+                try:
+                    row = (position[1] - 20) // 45
+                    col = (position[0] - 20) // 90
+                    move = [row, col]
+                    testGame.board = testGame.board.makeMove(move[0], move[1])
+                    moveNum += 1
+                    justMoved = True
+                except:
+                    pass
     if testGame.board.turn != userPlayer:
         if more and not justMoved:
             tree = MCTree(GameState(testGame.board))
-            move = tree.makeChoice(1000, moveNum)
+            if moveNum < 40:
+                move = tree.makeChoice(1000, moveNum)
+            else:
+                move = tree.makeChoice(4000, moveNum)
             testGame.board = move[0]
             if abs(move[1]) < 50:
                 print("evaluation:", move[1])

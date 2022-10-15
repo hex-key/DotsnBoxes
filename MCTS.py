@@ -3,6 +3,8 @@ from randomFunctions import hasWon, getNextPlayer, simulate
 from board import Board
 
 userPlayer = "R"
+
+
 # Things a game state needs:
 # - the literal game state (board)
 # - whose turn it is
@@ -44,7 +46,7 @@ class GameState:
             else:
                 self.total = 0
                 self.visits = 0
-                
+
     def setParent(self, parentState):
         self.parent = parentState
         self.player = getNextPlayer(parentState.player)
@@ -122,7 +124,7 @@ class GameState:
                 exploitationValue = self.total // (self.visits)
 
             # NOTE: np.log is actually ln(), np.log10 is standard log()
-            explorationValue = 20 * np.sqrt(np.log(self.parent.visits)/self.visits)
+            explorationValue = 20 * np.sqrt(np.log(self.parent.visits) / self.visits)
 
             if self.player != userPlayer:
                 explorationValue *= -1
@@ -130,8 +132,7 @@ class GameState:
             try:
                 return exploitationValue + explorationValue
             except:
-                return 1 * 10**200
-
+                return 1 * 10 ** 200
 
     def getChildrenUCBIs(self):
         childScores = []
@@ -177,13 +178,13 @@ class GameState:
 
             return self.children[favoriteChild].findHighestUCBILeaf()
 
-
     def expand(self):
         nextMoves = self.board.getNextMoves()
 
         for nextState in nextMoves:
             newState = GameState(Board(nextState, nextState.turn))
             newState.setParent(self)
+
 
 # Things a MCTree needs:
 # - root node -> this will point to all the other nodes
@@ -197,7 +198,7 @@ class MCTree:
     def __init__(self, start):
 
         # note: this root is likely going to be a part of a different tree. So we can't just reuse it – we need to reset the total and visits
-        self.root = start #GameState(start.board, start.player)
+        self.root = start  # GameState(start.board, start.player)
         self.root.expand()
 
         """print("ROOT")
@@ -223,28 +224,29 @@ class MCTree:
 
                 twoDeep = child.board.getNextMoves()
 
-                if child.board.turn == "R":
-                    minScore = [0, 25]
+                if child.board.turn == "B":
+                    minScore = [25, 0]
                     for state in twoDeep:
                         score = state.score()
-                        if score[1] - score[0] < minScore[1] - minScore[0]:
+                        if score[0] - score[1] < minScore[0] - minScore[1]:
                             minScore = score
 
                     score = minScore
-                
+
                 else:
-                    maxScore = [25, 0]
+                    maxScore = [0, 25]
                     for state in twoDeep:
                         score = state.score()
-                        if score[1] - score[0] > maxScore[1] - maxScore[0]:
+                        if score[0] - score[1] > maxScore[0] - maxScore[1]:
                             maxScore = score
 
                     score = maxScore
 
-
-                rawScores.append(score[1]-score[0])
+                rawScores.append(score[1] - score[0])
                 childScores.append(child.total / child.visits)
             except:
+                print("BADBADBADBADBAD")
+                ready = input()
                 childScores.append(child.total)
 
         approved = 0
@@ -263,8 +265,7 @@ class MCTree:
                         legalMoves.append(i)
                     elif rawScores[i] > max:
                         legalMoves = [i]
-                        max = rawScores[i] 
-            
+                        max = rawScores[i]
 
             max = childScores[0]
 
@@ -272,10 +273,10 @@ class MCTree:
                 if childScores[item] > max and item in legalMoves:
                     approved = item
                     max = childScores[item]
-            #print(approved)
+            # print(approved)
             return [self.root.children[approved].board, max]
 
         except:
-            #print("except")
+            # print("except")
             return [self.root.children[0].board, 50]
 

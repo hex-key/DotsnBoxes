@@ -4,6 +4,13 @@
     --long: 60px;
     --short: 15px;
     --border-width: 3px;
+
+    --light-blue: #9AFFFC;
+    --dark-blue: #3FABA7;
+
+
+    --light-red: #F89389;
+    --dark-red: #9F4036;
 }
 html * {
     color: rgb(31, 38, 67);
@@ -49,10 +56,20 @@ body {
     background-color: rgb(69, 69, 69);
 }
 
-.line-h:hover {
-    width: 50px;
-    height: 5px;
-    border: 5px solid rgb(0, 0, 0);
+.line-h:hover, .line-h-red {
+    width: 54px;;
+    height: 9px;
+    background-color: var(--light-red);
+    border: var(--border-width) solid var(--dark-red);
+    cursor: pointer;
+}
+
+.line-h:active {
+    width: 54px;
+    height: 9px;
+    background-color: var(--dark-red);
+    border: var(--border-width) solid var(--dark-red);
+    cursor: pointer;
 }
 
 .line-v {
@@ -62,10 +79,20 @@ body {
     background-color: rgb(69, 69, 69);
 }
 
-.line-v:hover {
-    height: var(--long) - calc(2 * var(--border-width));
-    width: var(--short) - calc(2 * var(--border-width));
-    border: var(--border-width)
+.line-v:hover, .line-v-red {
+    height: 54px;
+    width: 9px;
+    background-color: var(--light-red);
+    border: var(--border-width) solid var(--dark-red);
+    cursor: pointer;
+}
+
+.line-v:active {
+    height: 54px;
+    width: 9px;
+    background-color: var(--dark-red);
+    border: var(--border-width) solid var(--dark-red);
+    cursor: pointer;
 }
 
 .square {
@@ -73,12 +100,6 @@ body {
     background-color: rgb(128, 128, 128);
     height: 60px;
     width: 60px;
-}
-
-#gameBoard{
-    /* display: grid;
-    grid-template-columns: repeat(6, 1fr 6fr) 1fr;
-    grid-template-rows: repeat(6, 1fr 6fr) 1fr; */
 }
 
 .row-spacer {

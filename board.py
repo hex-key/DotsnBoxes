@@ -135,7 +135,7 @@ class Board:
                 bottomEdge = self.horizontalEdgesArray[(edgeRow-1)//2+1][edgeCol]
                 rightEdge = self.verticalEdgesArray[(edgeRow-1)//2][edgeCol+1]
 
-                if bottomEdge != " " and bottomEdge != " " and rightEdge != " ":
+                if topEdge != " " and bottomEdge != " " and rightEdge != " ":
                     self.squares[(edgeRow-1)//2][edgeCol] = self.turn
                     nextTurn = self.turn
             except:

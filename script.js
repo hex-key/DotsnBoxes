@@ -15,11 +15,11 @@ function exportBoard() {
                     arr.push("R");
                 } else if (child.className.includes("line-h-blue")) {
                     arr.push("B");
-                } else {
+                } else if (!child.className.includes("dot")) {
                     arr.push(" ");
                 }
-                board.horizontalEdges.push(arr);
             }
+            board.horizontalEdges.push(arr);
         } else if (anchor.className.includes("row-squares")) {
             let arrSquares = [];
             let arrLines = [];
@@ -37,14 +37,15 @@ function exportBoard() {
                     arrLines.push("B");
                 } else if (child.className === "line-v") {
                     arrLines.push(" ");
-                } else {
-                    console.log("?????");
                 }
-
-                board.verticalEdges.push(arrLines);
-                board.squares.push(arrSquares);
             }
+            board.verticalEdges.push(arrLines);
+            board.squares.push(arrSquares);
         }
     }
     return board;
+}
+
+function printBoard() {
+    console.log(JSON.stringify(exportBoard()));
 }

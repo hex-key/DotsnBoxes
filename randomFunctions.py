@@ -24,19 +24,19 @@ def simulate(board):
 
         possibleMoves = []
 
-        for hRow in range(7):
-            for hCol in range(6):
+        for hRow in range(6):
+            for hCol in range(5):
                 if simBoard.horizontalEdgesArray[hRow][hCol] == " ":
                     possibleMoves.append([hRow*2, hCol])
         
-        for vRow in range(6):
-            for vCol in range(7):
+        for vRow in range(5):
+            for vCol in range(6):
                 if simBoard.verticalEdgesArray[vRow][vCol] == " ":
                     possibleMoves.append([vRow*2+1, vCol])
         
         chosenMove = random.randint(0, len(possibleMoves)-1)
 
-        simBoard.makeMove(possibleMoves[chosenMove][0], possibleMoves[chosenMove][1])
+        simBoard = simBoard.makeMove(possibleMoves[chosenMove][0], possibleMoves[chosenMove][1])
 
     winner = simBoard.getWinner()
     if winner == "R":

@@ -122,7 +122,7 @@ class GameState:
                 exploitationValue = self.total // (self.visits)
 
             # NOTE: np.log is actually ln(), np.log10 is standard log()
-            explorationValue = 50 * np.sqrt(np.log(self.parent.visits)/self.visits)
+            explorationValue = 20 * np.sqrt(np.log(self.parent.visits)/self.visits)
 
             if self.player != userPlayer:
                 explorationValue *= -1

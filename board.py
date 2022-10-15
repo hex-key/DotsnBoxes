@@ -11,50 +11,47 @@ class Board:
             self.turn = "R"
 
         self.horizontalEdgesArray = [
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " "]
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "]
             ]
 
         self.verticalEdgesArray = [
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "]
-            ]
-        
-        self.squares = [
-            [" ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " "]
+            ]
+        
+        self.squares = [
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " "]
         ]
 
         if board != None:
 
-            for r in range(7):
-                for c in range(6):
+            for r in range(6):
+                for c in range(5):
                     self.horizontalEdgesArray[r][c] = board.horizontalEdgesArray[r][c]
             
-            for r in range(6):
-                for c in range(7):
+            for r in range(5):
+                for c in range(6):
                     self.verticalEdgesArray[r][c] = board.verticalEdgesArray[r][c]
             
-            for r in range(6):
-                for c in range(6):
+            for r in range(5):
+                for c in range(5):
                     self.squares[r][c] = board.squares[r][c]
     
     def gameOver(self):
-        for r in range(6):
-            for c in range(6):
+        for r in range(5):
+            for c in range(5):
                 if self.squares[r][c] == " ":
                     return False
         return True
@@ -64,8 +61,8 @@ class Board:
             redCount = 0
             blueCount = 0
 
-            for r in range(6):
-                for c in range(6):
+            for r in range(5):
+                for c in range(5):
                     if self.squares[r][c] == "R":
                         redCount += 1
                     else:
@@ -154,13 +151,13 @@ class Board:
 
         possibleMoves = []
 
-        for hRow in range(7):
-            for hCol in range(6):
+        for hRow in range(6):
+            for hCol in range(5):
                 if self.horizontalEdgesArray[hRow][hCol] == " ":
                     possibleMoves.append([hRow*2, hCol])
         
-        for vRow in range(6):
-            for vCol in range(7):
+        for vRow in range(5):
+            for vCol in range(6):
                 if self.verticalEdgesArray[vRow][vCol] == " ":
                     possibleMoves.append([vRow*2+1, vCol])
 
@@ -186,8 +183,8 @@ class Board:
         .__.__.__.
         
         """
-        for row in range(13):
-            for col in range(13):
+        for row in range(11):
+            for col in range(11):
                 if row % 2 == 0:
                     if col % 2 == 0:
                         print(".", end = "")

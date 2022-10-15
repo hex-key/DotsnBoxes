@@ -1,10 +1,17 @@
+/* #id .class */
+
+:root {
+    --long: 60px;
+    --short: 15px;
+    --border-width: 3px;
+}
 html * {
     color: rgb(31, 38, 67);
     font-family: 'Verdana', sans-serif !important;
 }
 
 body {
-    background-color: #a7d8c7;
+    background-color: rgb(200, 200, 200);
 }
 
 .title {
@@ -28,42 +35,57 @@ body {
 }
 
 .dot {
-    grid-area: d;
     display: inline-block;
-    border-radius: 50%;
-    background-color: rgb(24, 34, 78);
-    margin: 0 5px;
-    width: 10px;
-    height: 10px;
+    border-radius: 15%;
+    background-color: rgb(0, 0, 0);
+    width: var(--short);
+    height: var(--short);
 }
 
 .line-h {
-    grid-area: h;
-    background-color: rgb(200, 0, 0);
+    display: inline-block;
+    width: var(--long);
+    height: var(--short);
+    background-color: rgb(69, 69, 69);
+}
+
+.line-h:hover {
+    width: 50px;
+    height: 5px;
+    border: 5px solid rgb(0, 0, 0);
 }
 
 .line-v {
-    grid-area: v;
-    background-color: rgb(0, 0, 20);
+    height: var(--long);
+    width: var(--short);
+    display: inline-block;
+    background-color: rgb(69, 69, 69);
 }
 
-.gameBoard{
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr;
-    grid-template-rows: 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr 6fr 1fr;
-    grid-template-areas: 
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d"
-        "v s v s v s v s v s v s v"
-        "d h d h d h d h d h d h d";
+.line-v:hover {
+    height: var(--long) - calc(2 * var(--border-width));
+    width: var(--short) - calc(2 * var(--border-width));
+    border: var(--border-width)
+}
+
+.square {
+    display: inline-block;
+    background-color: rgb(128, 128, 128);
+    height: 60px;
+    width: 60px;
+}
+
+#gameBoard{
+    /* display: grid;
+    grid-template-columns: repeat(6, 1fr 6fr) 1fr;
+    grid-template-rows: repeat(6, 1fr 6fr) 1fr; */
+}
+
+.row-spacer {
+    display: block;
+}
+
+.row-squares {
+    display: block;
 }
 

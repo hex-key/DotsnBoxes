@@ -1,0 +1,4 @@
+- lie on the floor and cry and sob and shit and scream 
+- make style for blue lines
+- make style for colored in boxes
+- somehow make the thing 1) fill in boxes that are filled in and 2) fill in blue lines based on pythonic board object

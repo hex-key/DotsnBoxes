@@ -6,10 +6,12 @@
     --border-width: 3px;
 
     --light-blue: #9AFFFC;
+    --medium-blue: #64c8c8;
     --dark-blue: #3FABA7;
 
 
     --light-red: #F89389;
+    --medium-red: #f8736a;
     --dark-red: #9F4036;
 }
 html * {
@@ -72,6 +74,13 @@ body {
     cursor: pointer;
 }
 
+.line-h-blue {
+    width: 54px;
+    height: 9px;
+    background-color: var(--light-blue);
+    border: var(--border-width) solid var(--dark-blue);
+}
+
 .line-v {
     height: var(--long);
     width: var(--short);
@@ -87,6 +96,13 @@ body {
     cursor: pointer;
 }
 
+.line-v-blue {
+    height: 54px;
+    width: 9px;
+    background-color: var(--light-blue);
+    border: var(--border-width) solid var(--dark-blue);
+}
+
 .line-v:active {
     height: 54px;
     width: 9px;
@@ -100,6 +116,14 @@ body {
     background-color: rgb(128, 128, 128);
     height: 60px;
     width: 60px;
+}
+
+.square-red {
+    background-color: var(--medium-red);
+}
+
+.square-blue {
+    background-color: var(--medium-blue);
 }
 
 .row-spacer {

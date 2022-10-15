@@ -8,7 +8,7 @@ function exportBoard() {
 
     for (let i = 0; i < anchors.length; i++) {
         let anchor = anchors[i];
-        if (anchor.className.includes("row-spacer")) { // rel info = horizontal lines, should be 6 of them
+        if (anchor.className.includes("row-spacer")) { // rel info = horizontal lines, should be 5* of them
             let arr = [];
             for (child of anchor.children) {
                 if (child.className.includes("line-h-red")) {
@@ -20,7 +20,7 @@ function exportBoard() {
                 }
             }
             board.horizontalEdges.push(arr);
-        } else if (anchor.className.includes("row-squares")) {
+        } else if (anchor.className.includes("row-squares")) { // these rows have vert lines and squares
             let arrSquares = [];
             let arrLines = [];
 
@@ -48,4 +48,8 @@ function exportBoard() {
 
 function printBoard() {
     console.log(JSON.stringify(exportBoard()));
+}
+
+function updateSquareColors() {
+    
 }

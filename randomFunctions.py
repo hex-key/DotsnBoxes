@@ -40,9 +40,9 @@ def simulate(board):
 
     winner = simBoard.getWinner()
     if winner == "R":
-        return 50
-    elif winner == "B":
         return -50
+    elif winner == "B":
+        return 50
     else:
         return 0
 
@@ -51,3 +51,12 @@ def getPlayerMove():
     col = int(input("Which col? "))
 
     return [row, col]
+
+def setBoard(horizontalArray, verticalArray, squares, turn, board):
+    board.horizontalEdgesArray = horizontalArray
+    board.verticalEdgesArray = verticalArray
+    board.squares = squares
+    board.turn = turn
+
+
+

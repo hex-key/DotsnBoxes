@@ -1,9 +1,20 @@
 from game import Game
 from board import Board
 from MCTS import MCTree, GameState
-from randomFunctions import getPlayerMove, getNextPlayer
+from randomFunctions import getPlayerMove, getNextPlayer, setBoard
 
 testGame = Game()
+
+horizontalArray = [['__', '__', '__', ' ', ' '], ['__', '__', ' ', ' ', ' '], ['__', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', '__', '__', ' '], [' ', ' ', ' ', '__', ' ']]
+
+verticalArray = [['|', '|', '|', ' ', ' ', '|'], ['|', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', '|', ' '], [' ', ' ', '|', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ']]
+
+squares = [['R', 'R', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ']]
+
+turn = "R"
+
+setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
+
 testGame.start()
 
 userPlayer = "R"
@@ -15,7 +26,7 @@ while not testGame.board.gameOver():
         testGame.board = testGame.board.makeMove(move[0], move[1])
     else:
         tree = MCTree(GameState(testGame.board))
-        move = tree.makeChoice(2000)
+        move = tree.makeChoice(3000)
         testGame.board = move[0]
         if abs(move[1]) < 50:
             print("evaluation:", move[1])

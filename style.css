@@ -57,7 +57,7 @@ body {
 }
 
 .line-h:hover, .line-h-red {
-    width: 54px;;
+    width: 54px;
     height: 9px;
     background-color: var(--light-red);
     border: var(--border-width) solid var(--dark-red);

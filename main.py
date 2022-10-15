@@ -5,15 +5,15 @@ from randomFunctions import getPlayerMove, getNextPlayer, setBoard
 
 testGame = Game()
 
-horizontalArray = [['__', '__', '__', ' ', ' '], ['__', '__', ' ', ' ', ' '], ['__', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', '__', '__', ' '], [' ', ' ', ' ', '__', ' ']]
+horizontalArray = [['__', '__', '__', '__', '__'], ['__', '__', '__', '__', '__'], ['__', '__', '__', '__', ' '], ['__', ' ', ' ', '__', ' '], ['__', ' ', '__', ' ', ' '], ['__', ' ', ' ', '__', ' ']]  
 
-verticalArray = [['|', '|', '|', ' ', ' ', '|'], ['|', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', '|', ' '], [' ', ' ', '|', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ']]
+verticalArray = [['|', '|', '|', '|', '|', '|'], ['|', '|', '|', ' ', ' ', '|'], ['|', ' ', '|', '|', '|', '|'], ['|', '|', '|', ' ', '|', '|'], ['|', '|', '|', ' ', '|', '|']]
 
-squares = [['R', 'R', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ']]
+squares = [['R', 'R', 'R', 'R', 'R'], ['R', 'R', ' ', ' ', ' '], [' ', ' ', ' ', 'B', ' '], ['R', ' ', ' ', ' ', ' '], ['B', ' ', ' ', ' ', ' ']]
 
-turn = "R"
+turn = "B"
 
-#setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
+setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
 
 testGame.start()
 
@@ -29,7 +29,7 @@ while not testGame.board.gameOver():
         testGame.board = testGame.board.makeMove(move[0], move[1])
     else:
         tree = MCTree(GameState(testGame.board))
-        move = tree.makeChoice(1000, moveNum)
+        move = tree.makeChoice(3000, moveNum)
         testGame.board = move[0]
         if abs(move[1]) < 50:
             print("evaluation:", move[1])

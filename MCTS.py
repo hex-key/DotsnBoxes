@@ -222,13 +222,26 @@ class MCTree:
             try:
 
                 twoDeep = child.board.getNextMoves()
-                minScore = [0, 25]
-                for state in twoDeep:
-                    score = state.score()
-                    if score[1] - score[0] < minScore[1] - minScore[0]:
-                        minScore = score
 
-                score = minScore
+                if child.board.turn == "R":
+                    minScore = [0, 25]
+                    for state in twoDeep:
+                        score = state.score()
+                        if score[1] - score[0] < minScore[1] - minScore[0]:
+                            minScore = score
+
+                    score = minScore
+                
+                else:
+                    maxScore = [25, 0]
+                    for state in twoDeep:
+                        score = state.score()
+                        if score[1] - score[0] > maxScore[1] - maxScore[0]:
+                            maxScore = score
+
+                    score = maxScore
+
+
                 rawScores.append(score[1]-score[0])
                 childScores.append(child.total / child.visits)
             except:

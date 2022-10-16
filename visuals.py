@@ -6,13 +6,12 @@ from randomFunctions import getPlayerMove, getNextPlayer, setBoard
 
 testGame = Game()
 
-#horizontalArray = [['__', '__', '__', '__', '__'], ['__', '__', '__', '__', '__'], ['__', '__', '__', '__', ' '], ['__', ' ', ' ', '__', ' '], ['__', ' ', '__', ' ', ' '], ['__', ' ', ' ', '__', ' ']]
+horizontalArray = [['__', '__', ' ', '__', '__'], [' ', ' ', '__', ' ', ' '], ['__', '__', ' ', ' ', ' '], ['__', '__', ' ', ' ', '__'], [' ', '__', ' ', ' ', '__'], ['__', ' ', '__', ' ', '__']]
 
-#verticalArray = [['|', '|', '|', '|', '|', '|'], ['|', '|', '|', ' ', ' ', '|'], ['|', ' ', '|', '|', '|', '|'], ['|', '|', '|', ' ', '|', '|'], ['|', '|', '|', ' ', '|', '|']]
+verticalArray = [['|', ' ', '|', ' ', '|', ' '], [' ', '|', ' ', '|', '|', '|'], [' ', ' ', ' ', '|', '|', ' '], [' ', ' ', ' ', '|', ' ', ' '], [' ', '|', ' ', '|', '|', ' ']]
 
-#squares = [['R', 'R', 'R', 'R', 'R'], ['R', 'R', ' ', ' ', ' '], [' ', ' ', ' ', 'B', ' '], ['R', ' ', ' ', ' ', ' '], ['B', ' ', ' ', ' ', ' ']]
-
-#turn = "B"
+squares = [[' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ']]
+turn = "B"
 
 #setBoard(horizontalArray, verticalArray, squares, turn, testGame.board)
 
@@ -93,8 +92,14 @@ while keepGoing:
     if testGame.board.turn != userPlayer:
         if more and not justMoved:
             tree = MCTree(GameState(testGame.board))
-            if moveNum < 40:
+            if moveNum < 20:
                 move = tree.makeChoice(1000, moveNum)
+
+            elif moveNum < 30:
+                move = tree.makeChoice(2000, moveNum)
+
+            elif moveNum < 40:
+                move = tree.makeChoice(3000, moveNum)
             else:
                 move = tree.makeChoice(4000, moveNum)
             testGame.board = move[0]
@@ -106,11 +111,13 @@ while keepGoing:
                 print("GG's. Just concede now.")
 
             moveNum += 1
+            justMoved = True
 
-    print('')
-    testGame.board.printBoard()
+    if justMoved:
+        print('')
+        testGame.board.printBoard()
 
-    if testGame.board.gameOver():
+    if testGame.board.gameOver() and more:
         print(testGame.board.getWinner() + ' has won!')
         more = False
 

@@ -220,33 +220,32 @@ class MCTree:
         rawScores = []
 
         for child in self.root.children:
+
+            twoDeep = child.board.getNextMoves()
+
+            if child.board.turn == "B":
+                minScore = [25, 0]
+                for state in twoDeep:
+                    score = state.score()
+                    if score[0] - score[1] < minScore[0] - minScore[1]:
+                        minScore = score
+
+                score = minScore
+
+            else:
+                maxScore = [0, 25]
+                for state in twoDeep:
+                    score = state.score()
+                    if score[0] - score[1] > maxScore[0] - maxScore[1]:
+                        maxScore = score
+
+                score = maxScore
+
+            rawScores.append(score[1] - score[0])
+
             try:
-
-                twoDeep = child.board.getNextMoves()
-
-                if child.board.turn == "B":
-                    minScore = [25, 0]
-                    for state in twoDeep:
-                        score = state.score()
-                        if score[0] - score[1] < minScore[0] - minScore[1]:
-                            minScore = score
-
-                    score = minScore
-
-                else:
-                    maxScore = [0, 25]
-                    for state in twoDeep:
-                        score = state.score()
-                        if score[0] - score[1] > maxScore[0] - maxScore[1]:
-                            maxScore = score
-
-                    score = maxScore
-
-                rawScores.append(score[1] - score[0])
                 childScores.append(child.total / child.visits)
             except:
-                print("BADBADBADBADBAD")
-                ready = input()
                 childScores.append(child.total)
 
         approved = 0
@@ -267,10 +266,11 @@ class MCTree:
                         legalMoves = [i]
                         max = rawScores[i]
 
-            max = childScores[0]
+            max = childScores[legalMoves[0]]
+            approved = legalMoves[0]
 
-            for item in range(len(childScores)):
-                if childScores[item] > max and item in legalMoves:
+            for item in legalMoves:
+                if childScores[item] > max:
                     approved = item
                     max = childScores[item]
             # print(approved)
